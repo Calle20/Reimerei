@@ -99,14 +99,7 @@ namespace Reimerei
         }
         private bool IsAVowel(string letter)
         {
-            if(vowels.Contains(letter.ToLower()))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return vowels.Contains(letter.ToLower());
         }
         private int[] SetVowelGroups(string word)
         {
