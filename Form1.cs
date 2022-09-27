@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
@@ -52,13 +47,12 @@ namespace Reimerei
         { 
             List<char> first_word_split = first_word.ToList();
             List<char> second_word_split = second_word.ToList();
-            #region Rule3
+            //Rule3
             if (first_word.ToLower().EndsWith(second_word.ToLower())||second_word.ToLower().EndsWith(first_word.ToLower()))
             {
                 return false;
             }
-            #endregion
-            #region Rule2
+            //Rule2
             int[] second_vowel_groups = SetVowelGroups(second_word);
             if (NotSameVowelGroups(second_vowel_groups, first_word, second_word))
             {
@@ -68,8 +62,7 @@ namespace Reimerei
             {
                 return false;
             }
-            #endregion
-            #region Rule1
+            //Rule1
             int count_to;
             if (first_word_split.Count > second_word_split.Count)
             {
@@ -103,7 +96,6 @@ namespace Reimerei
                 }
             }
             return false;
-            #endregion
         }
         private bool IsAVowel(string letter)
         {
@@ -146,15 +138,9 @@ namespace Reimerei
         }
         private bool NotSameVowelGroups(int[] second_vowel_groups, string first_word, string second_word)
         {
-            if (first_vowel_groups[0] >= 2 && second_vowel_groups[0] < 2 || second_vowel_groups[0] >= 2 && first_vowel_groups[0] < 2 || 
-                first_vowel_groups[0] < 2 && second_vowel_groups[0] < 2 && first_vowel_groups[0] != second_vowel_groups[0] || first_word.Length-first_vowel_groups[1] != second_word.Length-second_vowel_groups[1])
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return first_vowel_groups[0] >= 2 && second_vowel_groups[0] < 2 || second_vowel_groups[0] >= 2 && first_vowel_groups[0] < 2 || 
+                first_vowel_groups[0] < 2 && second_vowel_groups[0] < 2 && first_vowel_groups[0] != second_vowel_groups[0] || 
+                first_word.Length-first_vowel_groups[1] != second_word.Length-second_vowel_groups[1];
         }
     }
 }
